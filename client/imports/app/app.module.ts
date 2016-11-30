@@ -2,6 +2,7 @@ import { NgModule }                         from "@angular/core";
 import { BrowserModule }                    from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }                     from '@angular/router';
+import { AccountsModule }                   from 'angular2-meteor-accounts-ui';
 
 import { AppComponent }                     from "./app.component";
 import { WishInfoComponent }                from "./wish/wish-info.component";
@@ -31,6 +32,7 @@ import { routes }                           from './app.routes';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    AccountsModule,
     // References the route import above
     RouterModule.forRoot(routes)
   ],
