@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }                     from '@angular/router';
 
 import { AppComponent }                     from "./app.component";
+import { WishInfoComponent }                from "./wish/wish-info.component";
 import { WishComponent }                    from "./wish/wish.component";
 import { WishDataService }                  from "./wish/wish-data.service";
 import { FormComponent }                    from './form/form.component';
@@ -14,6 +15,7 @@ import { routes }                           from './app.routes';
   declarations: [
     AppComponent,
     WishComponent,
+    WishInfoComponent,
     FormComponent
   ],
   // Entry Components

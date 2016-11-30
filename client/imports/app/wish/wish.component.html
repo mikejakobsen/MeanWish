@@ -2,7 +2,8 @@
 
 <ul class="wish-list">
   <li class="wish-list-item" *ngFor="let wish of data | async">
-    {{wish.name}} {{wish.description}}
+    <a [routerLink]="['/wish', wish._id]">{{wish.name}}</a>
+    {{wish.description}}
     <button class="warning hollow button" (click)="deleteWish(wish)">Delete</button>
   </li>
 </ul>
