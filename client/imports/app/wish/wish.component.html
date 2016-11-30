@@ -1,0 +1,7 @@
+<h2>{{title}}</h2>
+
+<ul class="wish-list">
+    <li class="wish-list-item" *ngFor="let wish of data | async">
+        {{wish.name}} {{wish.description}}
+    </li>
+</ul>
