@@ -10,10 +10,10 @@ export class Main {
     if (WishCollection.find({}).cursor.count() === 0) {
       const data: Wish[] = [{
         name: "A new Bike",
-        description: "A really want a new Bike"
+        description: "I really want a new Bike"
       }, {
         name: "Kandis CD",
-        description: "Johnny is the man"
+        description: "Johnny from Kandis is the man"
       }, {
         name: "A new MacBook",
         description: "The new one with the tap bar"

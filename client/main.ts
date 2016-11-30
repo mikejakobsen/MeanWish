@@ -1,4 +1,5 @@
 import "angular2-meteor-polyfills";
+import 'foundation-sites/dist/foundation.js';
 
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { enableProdMode }         from "@angular/core";
