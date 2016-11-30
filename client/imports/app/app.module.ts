@@ -1,10 +1,13 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import { NgModule }                         from "@angular/core";
+import { BrowserModule }                    from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from "./app.component";
-import { WishComponent } from "./wish/wish.component";
-import { WishDataService } from "./wish/wish-data.service";
-import { FormComponent } from './form/form.component';
+import { RouterModule }                     from '@angular/router';
+
+import { AppComponent }                     from "./app.component";
+import { WishComponent }                    from "./wish/wish.component";
+import { WishDataService }                  from "./wish/wish-data.service";
+import { FormComponent }                    from './form/form.component';
+import { routes }                           from './app.routes';
 
 @NgModule({
   // Components, Pipes, Directive
@@ -25,7 +28,9 @@ import { FormComponent } from './form/form.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // References the route import above
+    RouterModule.forRoot(routes)
   ],
   // Main Component
   bootstrap: [ AppComponent ]
