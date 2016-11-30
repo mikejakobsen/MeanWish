@@ -1,9 +1,23 @@
 <form [formGroup]="addForm" (ngSubmit)="addWish()">
-  <label>Wish</label>
-  <input type="text" formControlName="name">
-
-  <label>Description</label>
-  <input type="text" formControlName="description">
-
-  <button type="submit">Add</button>
+  <div class="row">
+    <div class="small-8 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Wish</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" formControlName="name" id="right-label" placeholder="Wish">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Description</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" formControlName="description" id="right-label" placeholder="Description">
+        </div>
+      </div>
+      <button class="hollow button" type="submit">Add Wish</button>
+    </div>
+  </div>
 </form>
