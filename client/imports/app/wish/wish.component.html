@@ -1,7 +1,8 @@
 <h2>{{title}}</h2>
 
 <ul class="wish-list">
-    <li class="wish-list-item" *ngFor="let wish of data | async">
-        {{wish.name}} {{wish.description}}
-    </li>
+  <li class="wish-list-item" *ngFor="let wish of data | async">
+    {{wish.name}} {{wish.description}}
+    <button class="warning hollow button" (click)="deleteWish(wish)">Delete</button>
+  </li>
 </ul>

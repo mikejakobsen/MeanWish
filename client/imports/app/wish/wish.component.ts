@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Observable }        from "rxjs";
 import { WishDataService }   from "./wish-data.service";
 import { Wish }              from "../../../../both/models/wish.model";
+import { WishCollection }    from "../../../../both/collections/wish.collection";
 import template              from "./wish.component.html";
 import style                 from "./wish.component.scss";
 
@@ -20,5 +21,8 @@ export class WishComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.wishDataService.getData().zone();
+  }
+  deleteWish(wish: Wish): void {
+    WishCollection.remove(wish._id);
   }
 }
