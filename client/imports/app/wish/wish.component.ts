@@ -33,6 +33,9 @@ export class WishComponent implements OnInit, OnDestroy {
   deleteWish(wish: Wish): void {
     WishCollection.remove(wish._id);
   }
+  search(value: string): void {
+    this.data = WishCollection.find(value ? { name: value } : {}).zone();
+  }
   ngOnDestroy() {
     this.wishSub.unsubscribe();
   }

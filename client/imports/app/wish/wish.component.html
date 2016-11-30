@@ -1,5 +1,20 @@
 <login-buttons></login-buttons>
 
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Site Title</li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><input type="text" #searchtext placeholder="Search by title"></li>
+      <li><button type="button" (click)="search(searchtext.value)">Search</button></li>
+    </ul>
+  </div>
+</div>
+
 <h2>{{title}}</h2>
 
 <ul class="wish-list">
@@ -10,3 +25,8 @@
   </li>
 </ul>
 <form-element></form-element>
+
+
+
+
+
