@@ -9,7 +9,7 @@ import { WishInfoComponent }                from "./wish/wish-info.component";
 import { WishComponent }                    from "./wish/wish.component";
 import { WishDataService }                  from "./wish/wish-data.service";
 import { FormComponent }                    from './form/form.component';
-import { routes }                           from './app.routes';
+import { routes, ROUTES_PROVIDERS }         from './app.routes';
 
 @NgModule({
   // Components, Pipes, Directive
@@ -25,7 +25,8 @@ import { routes }                           from './app.routes';
   ],
   // Providers
   providers: [
-    WishDataService
+    WishDataService,
+    ...ROUTES_PROVIDERS
   ],
   // Modules
   imports: [

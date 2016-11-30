@@ -10,13 +10,16 @@ export class Main {
     if (WishCollection.find({}).cursor.count() === 0) {
       const data: Wish[] = [{
         name: "A new Bike",
-        description: "I really want a new Bike"
+        description: "I really want a new Bike",
+        public: true
       }, {
         name: "Kandis CD",
-        description: "Johnny from Kandis is the man"
+        description: "Johnny from Kandis is the man",
+        public: false
       }, {
         name: "A new MacBook",
-        description: "The new one with the tap bar"
+        description: "The new one with the tap bar",
+        public: true
       }];
       data.forEach((obj: Wish) => {
         WishCollection.insert(obj);

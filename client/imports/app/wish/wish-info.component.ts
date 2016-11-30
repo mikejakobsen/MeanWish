@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute }               from '@angular/router';
 import { Subscription }                 from 'rxjs/Subscription';
+import { Meteor }                       from 'meteor/meteor';
+import { MeteorObservable }             from 'meteor-rxjs';
 
 import 'rxjs/add/operator/map';
 
@@ -18,6 +20,7 @@ export class WishInfoComponent implements OnInit, OnDestroy {
   wishId: string;
   paramsSub: Subscription;
   wish: Wish;
+  wishSub: Subscription;
 
   constructor(
     private route: ActivatedRoute
@@ -27,13 +30,24 @@ export class WishInfoComponent implements OnInit, OnDestroy {
     this.paramsSub = this.route.params
     .map(params => params['wishId'])
     .subscribe(wishId => {
-      this.wishId = wishId
+      this.wishId = wishId;
 
       // Query the collection
-      this.wish = WishCollection.findOne(this.wishId);
+      // this.wish = WishCollection.findOne(this.wishId);
+      if (this.wishSub) {
+        this.wishSub.unsubscribe();
+      }
+
+      this.wishSub = MeteorObservable.subscribe('wish', this.wishId).subscribe(() => {
+        this.wish = WishCollection.findOne(this.wishId);
+      });
     });
   }
   saveWish() {
+    if (!Meteor.userId()) {
+      alert('Please log in');
+      return;
+    }
     WishCollection.update(this.wish._id, {
       $set: {
         name: this.wish.name,
@@ -43,5 +57,6 @@ export class WishInfoComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
+    this.wishSub.unsubscribe();
   }
 }
