@@ -33,6 +33,14 @@ export class WishInfoComponent implements OnInit, OnDestroy {
       this.wish = WishCollection.findOne(this.wishId);
     });
   }
+  saveWish() {
+    WishCollection.update(this.wish._id, {
+      $set: {
+        name: this.wish.name,
+        description: this.wish.description,
+      }
+    });
+  }
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
   }
