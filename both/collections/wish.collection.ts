@@ -5,7 +5,7 @@ import {Wish}              from "../models/wish.model";
 export const WishCollection = new MongoObservable.Collection<Wish>("wish-collection");
 
 function loggedIn() {
-  return !!Meteor.user();
+  return !Meteor.user();
 }
 
 WishCollection.allow({

@@ -10,6 +10,15 @@ import { WishCollection }               from "../../../../both/collections/wish.
 import template                         from "./wish.component.html";
 import style                            from "./wish.component.scss";
 
+interface Pagination {
+  limit: number;
+  skip: number;
+}
+
+interface Options extends Pagination {
+  [key: string]: any
+}
+
 @Component({
   selector: "wish",
   template,
@@ -20,22 +29,35 @@ export class WishComponent implements OnInit, OnDestroy {
   title: string;
   data: Observable<Wish[]>;
   wishSub: Subscription;
+  pageSize: number = 10;
+  curPage: number = 1;
+  nameOrder: number = 1;
 
   constructor(private wishDataService: WishDataService) {
     this.title = "Wishlist";
   }
 
   ngOnInit() {
-    // this.data = this.wishDataService.getData().zone();
-    this.data = WishCollection.find({}).zone();
-    this.wishSub = MeteorObservable.subscribe('wish').subscribe();
+    const options: Options = {
+      limit: this.pageSize,
+      skip: (this.curPage - 1) * this.pageSize,
+      sort: { name: this.nameOrder }
+    };
+
+    this.wishSub = MeteorObservable.subscribe('wish', options).subscribe(() => {
+      this.data = WishCollection.find({}).zone();
+    });
   }
+
+
   deleteWish(wish: Wish): void {
     WishCollection.remove(wish._id);
-  }
+  };
+
   search(value: string): void {
     this.data = WishCollection.find(value ? { name: value } : {}).zone();
-  }
+  };
+
   ngOnDestroy() {
     this.wishSub.unsubscribe();
   }

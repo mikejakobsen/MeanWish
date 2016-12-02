@@ -1,11 +1,15 @@
 import { Meteor }         from 'meteor/meteor';
 import { WishCollection } from '../../../both/collections/wish.collection';
 
-Meteor.publish('wishes', function() {
-  return WishCollection.find(buildQuery.call(this));
+interface Options {
+  [key: string]: any;
+}
+
+Meteor.publish('wishes', function(options: Options) {
+  return WishCollection.find(buildQuery.call(this), options);
 });
 
-Meteor.publish('wishes', function(wishId: string) {
+Meteor.publish('wish', function(wishId: string) {
   return WishCollection.find(buildQuery.call(this, wishId));
 });
 
@@ -15,10 +19,10 @@ function buildQuery(wishId?: string): Object {
     $or: [{
       public: true
     },
-    { 
+    {
       // current user is the owner
       $and: [{
-        owner: this.userId 
+        owner: this.userId
       }, {
         owner: {
           $exists: true
@@ -30,9 +34,9 @@ function buildQuery(wishId?: string): Object {
   if (wishId) {
     return {
       $and: [{
-          _id: wishId
-        },
-        isAvailable
+        _id: wishId
+      },
+      isAvailable
       ]
     };
   }
